@@ -1,6 +1,7 @@
 # practice_project
 
-A new Flutter project.
+A new Flutter project that is a task during my Zuri Training. I made use of a basic data model,
+using the Future abstract class to delay some navigation transitions, Navigator 2.0 used as well
 
 ## Getting Started
 
