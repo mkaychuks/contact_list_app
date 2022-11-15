@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practice_project/screens/contacts_screen.dart';
 
 import '../widgets/form_button.dart';
 import '../widgets/textfield_widget.dart';
@@ -11,6 +12,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -46,7 +48,12 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             FormButton(
               buttonText: 'login',
-              onPressed: () => Navigator.pop(context),
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ContactScreen(),
+                ),
+              ),
             )
           ],
         ),
