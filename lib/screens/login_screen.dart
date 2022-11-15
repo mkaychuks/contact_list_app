@@ -54,12 +54,17 @@ class _LoginScreenState extends State<LoginScreen> {
               onPressed: () async {
                 final auth = Auth(emailController.text, passwordController.text);
 
-                await auth.loginUsers();
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>  ContactScreen(),
-                  ),
+                await Future.delayed(
+                 const Duration(seconds: 15),
+                  () async {
+                    await auth.loginUsers();
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>  ContactScreen(),
+                      ),
+                    );
+                  },
                 );
               }
             )

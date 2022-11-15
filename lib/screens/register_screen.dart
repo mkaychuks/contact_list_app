@@ -52,12 +52,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 final auth =
                     Auth(emailController.text, passwordController.text);
 
-                await auth.signUpUsers();
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const LoginScreen(),
-                  ),
+                await Future.delayed(
+                 const Duration(seconds: 15),
+                  () async {
+                    await auth.signUpUsers();
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LoginScreen(),
+                      ),
+                    );
+                  },
                 );
               },
             ),
