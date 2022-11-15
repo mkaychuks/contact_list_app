@@ -1,6 +1,9 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:practice_project/screens/contacts_screen.dart';
 
+import '../logic/authentication.dart';
 import '../widgets/form_button.dart';
 import '../widgets/textfield_widget.dart';
 
@@ -13,7 +16,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
 
-  final usernameController = TextEditingController();
+  final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
   @override
@@ -29,8 +32,8 @@ class _LoginScreenState extends State<LoginScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextFieldWidget(
-              controller: usernameController,
-              hintText: 'username'.toUpperCase(),
+              controller: emailController,
+              hintText: 'email'.toUpperCase(),
               obscureText: false,
               textFieldIcon: const Icon(Icons.people),
             ),
@@ -48,12 +51,17 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             FormButton(
               buttonText: 'login',
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ContactScreen(),
-                ),
-              ),
+              onPressed: () async {
+                final auth = Auth(emailController.text, passwordController.text);
+
+                await auth.loginUsers();
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>  ContactScreen(),
+                  ),
+                );
+              }
             )
           ],
         ),
