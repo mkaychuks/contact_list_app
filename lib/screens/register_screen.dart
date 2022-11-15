@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practice_project/logic/authentication.dart';
 import 'package:practice_project/screens/login_screen.dart';
 import 'package:practice_project/widgets/form_button.dart';
 
@@ -12,7 +13,7 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  final usernameController = TextEditingController();
+  final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
   @override
@@ -28,8 +29,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextFieldWidget(
-              controller: usernameController,
-              hintText: 'username'.toUpperCase(),
+              controller: emailController,
+              hintText: 'email'.toUpperCase(),
               obscureText: false,
               textFieldIcon: const Icon(Icons.people),
             ),
@@ -47,13 +48,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
             FormButton(
               buttonText: 'register',
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const LoginScreen(),
-                ),
-              ),
-            )
+              onPressed: () async {
+                final auth =
+                    Auth(emailController.text, passwordController.text);
+
+                await auth.signUpUsers();
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const LoginScreen(),
+                  ),
+                );
+              },
+            ),
           ],
         ),
       ),
