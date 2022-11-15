@@ -1,7 +1,8 @@
 # practice_project
 
 A new Flutter project that is a task during my Zuri Training. I made use of a basic data model,
-using the Future abstract class to delay some navigation transitions, Navigator 2.0 used as well
+using the Future abstract class to delay some navigation transitions, Navigator 2.0 used as well.
+I also added Firebase Authentication, so as to learn how it works actually..
 
 ## Getting Started
 
